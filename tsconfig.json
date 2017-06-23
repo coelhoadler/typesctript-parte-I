@@ -3,7 +3,8 @@
         "target" : "es6",
         "outDir" : "app/js",
         "noEmitOnError" : true, // não gera o arquivo js caso exista um erro
-        "noImplicitAny" : true // obriga a declarar o tipo da variável
+        "noImplicitAny" : true, // obriga a declarar o tipo da variável
+        "removeComments" : true
     },
     "include" : [
         "app/ts/**/*"
