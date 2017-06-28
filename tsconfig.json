@@ -5,7 +5,8 @@
         "noEmitOnError" : true, // não gera o arquivo js caso exista um erro
         "noImplicitAny" : true, // obriga a declarar o tipo da variável
         "removeComments" : true,
-        "module" : "system"
+        "module" : "system",
+        "strictNullChecks": true
     },
     "include" : [
         "app/ts/**/*"
