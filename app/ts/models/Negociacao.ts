@@ -1,21 +1,25 @@
-class Negociacao {
+export class Negociacao {
 
-    constructor(private _data : Date, private _quantidade : number, private _valor : number) { }
+    // constructor(private _data : Date, private _quantidade : number, private _valor : number) { }
+    constructor(readonly data : Date, readonly quantidade : number, readonly valor : number) { }
 
-    get data() {
-        return this._data;
-    }
+    // quando usamos o modificador de acesso "readonly"
+    // ñ precisamos declarar os getters
 
-    get quantidade() {
-        return this._quantidade;
-    }
+    // get data() {
+    //     return this._data;
+    // }
 
-    get valor() {
-        return this._valor;
-    }
+    // get quantidade() {
+    //     return this._quantidade;
+    // }
+
+    // get valor() {
+    //     return this._valor;
+    // }
 
     get volume() {
-        return this._quantidade * this._valor;
+        return this.quantidade * this.valor;
     }
 
 }

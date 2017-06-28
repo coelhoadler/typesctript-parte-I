@@ -1,4 +1,8 @@
-class NegociacoesView extends View<Negociacoes> {
+import { View } from './View';
+
+import { Negociacoes } from '../models/Negociacoes';
+
+export class NegociacoesView extends View<Negociacoes> {
 
     template(model : Negociacoes) : string {
         return `
@@ -11,7 +15,6 @@ class NegociacoesView extends View<Negociacoes> {
                         <th>VOLUME</th>
                     </tr>
                 </thead>
-
                 <tbody>
                 </tbody>
                     ${model.paraArray().map(negociacao => 

@@ -4,7 +4,8 @@
         "outDir" : "app/js",
         "noEmitOnError" : true, // não gera o arquivo js caso exista um erro
         "noImplicitAny" : true, // obriga a declarar o tipo da variável
-        "removeComments" : true
+        "removeComments" : true,
+        "module" : "system"
     },
     "include" : [
         "app/ts/**/*"
