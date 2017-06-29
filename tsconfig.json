@@ -6,7 +6,8 @@
         "noImplicitAny" : true, // obriga a declarar o tipo da variável
         "removeComments" : true,
         "module" : "system",
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "experimentalDecorators": true
     },
     "include" : [
         "app/ts/**/*"
