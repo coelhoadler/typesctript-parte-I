@@ -1,8 +1,8 @@
 import { NegociacoesView, MensagemView } from '../views/index';
 
-import { Negociacao, Negociacoes } from '../models/index';
+import { Negociacao, Negociacoes, NegociacaoParcial } from '../models/index';
 
-import { domInject } from '../helpers/decorators/index';
+import { domInject, throttle } from '../helpers/decorators/index';
 
 export class NegociacaoController {
 
@@ -23,9 +23,8 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
     }
 
-    adiciona(event : Event) {
-        event.preventDefault();
-
+    @throttle()
+    adiciona() {
         let data = new Date(this._inputData.value.replace(/-/g, ','));
 
         if (!this._ehDiaUtil(data)) {
@@ -44,6 +43,33 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
 
         this._mensagemView.update("Negociação adicionada com sucesso :)");
+    }
+
+    @throttle()
+    importaDados() {
+
+        const isOK = (data : Response) => {
+            if (data.ok) {
+                return data;
+            } else {
+                throw new Error(data.statusText);
+            }
+        };
+        
+        fetch("http://localhost:8080/dados")
+            .then(res => isOK(res))
+            .then(res => res.json())
+            .then((dados : NegociacaoParcial[]) => {
+                dados
+                    .map(dado => new Negociacao(new Date(), dado.montante, dado.vezes))
+                    .forEach(negociacao => this._negociacoes.adiciona(negociacao));
+
+                    this._negociacoesView.update(this._negociacoes);
+            })
+            .catch((err) => {
+                throw new Error(err);
+            })
+
     }
 
     private _ehDiaUtil(data : Date) {
